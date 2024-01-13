@@ -3,11 +3,13 @@
 int main(void){
 
     //variables
-    int selector, numProductos;
+    int selector, numProductos, aux;
     char controlador;
+    int existencia;
 
     numProductos = cargarProductos();
-    //printf("%d\n", numProductos);
+    //aux = verificarExistencia(numProductos);
+    //printf("%d\n", aux);
     do{
         desplegarMenu(&selector);
         system("clear");
@@ -23,14 +25,22 @@ int main(void){
         case 4:
             printf("---MODIFICAR CANTIDAD---\n\n"); 
             break;
-        case 5:
+        case 5: 
+            existencia = eliminarProducto(numProductos);
+            if(existencia == 1){
+                printf("Existe\n");
+                numProductos = cargarProductos();
+            }else
+                printf("No existe\n");
+            break;
+        case 6:
             printf("SALIENDO\n\n");
             break;
         default:
             printf("OPCION NO VALIDA\n\n");
             break;
         }
-    }while(selector != 5);
+    }while(selector != 6);
     
     system("pause");
     return 0;

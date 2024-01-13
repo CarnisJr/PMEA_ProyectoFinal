@@ -111,16 +111,73 @@ void listarEmpleados(int nProductos){
     printf("|           Nombre           |  Cantidad  |    Precio   | Codigo |");
     for(size_t i = 0; i < nProductos; i++){
         printf("\n+----------------------------+------------+-------------+--------+\n");
-        printf("| %-26s | %-10s | %-11s | %-5s |", productos[i].nombre, productos[i].cantidad, productos[i].precio, productos[i].codigo);
+        printf("| %-26s | %-10s | %-11s | %-6s |", productos[i].nombre, productos[i].cantidad, productos[i].precio, productos[i].codigo);
     }
     printf("\n+----------------------------+------------+-------------+--------+\n");
     system("pause");
     system("clear");
 }
 
-// Modificar Precio
+// Eliminar producto
 
+int eliminarProducto(int nProductos){
 
+    FILE *f;
+    f = fopen("productos.txt", "w");
+    int verificarExistencia(char *verificacion, int nProductos);
+
+    //Variables locales
+    int existencia, i;
+    char verificacion[5];
+    printf("Ingrese la id del empleado: ");
+    scanf("%s", verificacion);
+    printf("---ELIMINAR PRODUCTO---\n\n");
+    
+    //Funcion verificar existencia del producto
+    existencia = verificarExistencia(verificacion, nProductos);
+    
+    if(existencia == 1){
+        for(size_t i = 0; i < nProductos; i++){
+            if(strncmp(productos[i].codigo, verificacion, 2) == 0){
+
+                continue;
+            }else{
+
+                fflush(stdin);
+
+                fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+                fprintf(f, ",");
+                fprintf(f, "\n");
+            }
+        }    
+    }    
+    
+    fclose(f);
+    return existencia;
+}
+
+//  Verificar codigo de producto
+
+int verificarExistencia(char *verificacion, int nProductos){
+
+    for(size_t i = 0; i < nProductos; i++){
+        if(strncmp(productos[i].codigo, verificacion, 2) == 0){
+            return 1;
+            break;
+        }else
+            return 0;
+        
+    }
+}
 
 
 #endif
