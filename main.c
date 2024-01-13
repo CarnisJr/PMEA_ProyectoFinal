@@ -21,17 +21,36 @@ int main(void){
             break;
         case 3:
             printf("---MODIFICAR PRECIO---\n\n"); 
+            existencia = modificarPrecio(numProductos);
+            if(existencia == 1){
+                printf("Existe\n");
+                numProductos = cargarProductos();
+            }else
+                printf("No existe\n");
+            system("pause");
+            system("clear");
             break;
         case 4:
             printf("---MODIFICAR CANTIDAD---\n\n"); 
+            existencia = modificarCantidad(numProductos);
+            if(existencia == 1){
+                printf("Existe\n");
+                numProductos = cargarProductos();
+            }else
+                printf("No existe\n");
+            system("pause");
+            system("clear");
             break;
         case 5: 
+            printf("---ELIMINAR PRODUCTO---\n\n");
             existencia = eliminarProducto(numProductos);
             if(existencia == 1){
                 printf("Existe\n");
                 numProductos = cargarProductos();
             }else
                 printf("No existe\n");
+            system("pause");
+            system("clear");
             break;
         case 6:
             printf("SALIENDO\n\n");
@@ -42,6 +61,5 @@ int main(void){
         }
     }while(selector != 6);
     
-    system("pause");
     return 0;
 }

@@ -16,7 +16,7 @@ struct productos{
 void desplegarMenu(int *selector){
 
     printf("---INVENTARIO DE PRODUCTOS---\n\n");
-    printf("1. Agregar Productos\n2. Listar Productos\n3. Modificar Precio\n4. Modificar cantidad\n\n");
+    printf("1. Agregar Productos\n2. Listar Productos\n3. Modificar Precio\n4. Modificar cantidad\n5. Eliminar producto\n6. Salir\n\n");
     printf("Ingrese una opcion: ");
     scanf("%i", &*selector);
 }
@@ -122,16 +122,22 @@ void listarEmpleados(int nProductos){
 
 int eliminarProducto(int nProductos){
 
+    //File principal
     FILE *f;
     f = fopen("productos.txt", "w");
+
+    /*/File de productos eliminados
+    FILE *fp;
+    fp = fopen("productosEliminados.txt", "a");*/
+
+    //declaraacion de la funcion para verificar que exista el producto
     int verificarExistencia(char *verificacion, int nProductos);
 
     //Variables locales
     int existencia, i;
     char verificacion[5];
-    printf("Ingrese la id del empleado: ");
+    printf("Ingrese el codigo del producto: ");
     scanf("%s", verificacion);
-    printf("---ELIMINAR PRODUCTO---\n\n");
     
     //Funcion verificar existencia del producto
     existencia = verificarExistencia(verificacion, nProductos);
@@ -139,7 +145,7 @@ int eliminarProducto(int nProductos){
     if(existencia == 1){
         for(size_t i = 0; i < nProductos; i++){
             if(strncmp(productos[i].codigo, verificacion, 2) == 0){
-
+                
                 continue;
             }else{
 
@@ -159,11 +165,195 @@ int eliminarProducto(int nProductos){
                 fprintf(f, "\n");
             }
         }    
-    }    
+    }else{
+        for(size_t i = 0; i < nProductos; i++){
+            fflush(stdin);
+
+            fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+            fprintf(f, ",");
+            fprintf(f, "\n");
+        }
+    }  
     
     fclose(f);
     return existencia;
 }
+
+//Modificar precio
+
+int modificarPrecio(int nProductos){
+     //File principal
+    FILE *f;
+    f = fopen("productos.txt", "w");
+
+    /*/File de productos eliminados
+    FILE *fp;
+    fp = fopen("productosEliminados.txt", "a");*/
+
+    //declaraacion de la funcion para verificar que exista el producto
+    int verificarExistencia(char *verificacion, int nProductos);
+
+    //Variables locales
+    int existencia, i;
+    char verificacion[5];
+    printf("Ingrese el codigo del producto: ");
+    scanf("%s", verificacion);
+    
+    //Funcion verificar existencia del producto
+    existencia = verificarExistencia(verificacion, nProductos);
+    
+    if(existencia == 1){
+        for(size_t i = 0; i < nProductos; i++){
+            if(strncmp(productos[i].codigo, verificacion, 2) == 0){
+                
+                
+                fflush(stdin);
+
+                fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fprintf(f, ",");
+
+                printf("Precio del producto: ");
+                gets(productos[i].precio);
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+                fprintf(f, ",");
+                fprintf(f, "\n");
+            }else{
+
+                fflush(stdin);
+
+                fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+                fprintf(f, ",");
+                fprintf(f, "\n");
+            }
+        }    
+    }else{
+        for(size_t i = 0; i < nProductos; i++){
+            fflush(stdin);
+
+            fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+            fprintf(f, ",");
+            fprintf(f, "\n");
+        }
+    }  
+    
+    fclose(f);
+    return existencia;
+}
+
+//Modificar cantidad
+
+int modificarCantidad(int nProductos){
+     //File principal
+    FILE *f;
+    f = fopen("productos.txt", "w");
+
+    //declaraacion de la funcion para verificar que exista el producto
+    int verificarExistencia(char *verificacion, int nProductos);
+
+    //Variables locales
+    int existencia, i;
+    char verificacion[5];
+    printf("Ingrese el codigo del producto: ");
+    scanf("%s", verificacion);
+    
+    //Funcion verificar existencia del producto
+    existencia = verificarExistencia(verificacion, nProductos);
+    
+    if(existencia == 1){
+        for(size_t i = 0; i < nProductos; i++){
+            if(strncmp(productos[i].codigo, verificacion, 2) == 0){
+                
+                
+                fflush(stdin);
+
+                fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+                fprintf(f, ",");
+
+                printf("Cantidad del producto: ");
+                gets(productos[i].cantidad);
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+                fprintf(f, ",");
+                fprintf(f, "\n");
+            }else{
+
+                fflush(stdin);
+
+                fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fprintf(f, ",");
+
+                fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+                fprintf(f, ",");
+                fprintf(f, "\n");
+            }
+        }    
+    }else{
+        for(size_t i = 0; i < nProductos; i++){
+            fflush(stdin);
+
+            fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+            fprintf(f, ",");
+
+            fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+            fprintf(f, ",");
+            fprintf(f, "\n");
+        }
+    }  
+    
+    fclose(f);
+    return existencia;
+}
+
 
 //  Verificar codigo de producto
 
