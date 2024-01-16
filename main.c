@@ -1,4 +1,7 @@
 #include "funciones.h" 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 int main(void){
 
@@ -17,7 +20,7 @@ int main(void){
         case 1: agregarProductos(&controlador);
             numProductos = cargarProductos();
             break;
-        case 2: listarEmpleados(numProductos);
+        case 2: listarProductos(numProductos);
             break;
         case 3:
             printf("---MODIFICAR PRECIO---\n\n"); 
