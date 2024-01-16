@@ -4,7 +4,7 @@ int main(void){
 
     //variables
     int selector, numProductos, aux;
-    char controlador;
+    char controlador, c;
     int existencia;
 
     numProductos = cargarProductos();
@@ -23,33 +23,42 @@ int main(void){
             printf("---MODIFICAR PRECIO---\n\n"); 
             existencia = modificarPrecio(numProductos);
             if(existencia == 1){
-                printf("Existe\n");
+                printf("Cambio realizado\n");
                 numProductos = cargarProductos();
             }else
                 printf("No existe\n");
-            system("pause");
+
+            fflush(stdin);
+            printf("Continuar... ");
+            c = getchar();
             system("clear");
             break;
         case 4:
             printf("---MODIFICAR CANTIDAD---\n\n"); 
             existencia = modificarCantidad(numProductos);
             if(existencia == 1){
-                printf("Existe\n");
+                printf("Cambio realizado\n");
                 numProductos = cargarProductos();
             }else
                 printf("No existe\n");
-            system("pause");
+
+            fflush(stdin);
+            printf("Continuar... ");
+            c = getchar();
             system("clear");
             break;
         case 5: 
             printf("---ELIMINAR PRODUCTO---\n\n");
             existencia = eliminarProducto(numProductos);
             if(existencia == 1){
-                printf("Existe\n");
+                printf("Producto eliminado\n");
                 numProductos = cargarProductos();
             }else
                 printf("No existe\n");
-            system("pause");
+
+            fflush(stdin);
+            printf("Continuar... ");
+            c = getchar();
             system("clear");
             break;
         case 6:

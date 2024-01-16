@@ -35,23 +35,23 @@ void agregarProductos(char *controlador){
         printf("---AGREGANDO PRODUCTOS---\n\n"); 
 
         printf("Nombre del producto: ");
-        gets(productos[i].nombre);
-        fwrite(productos[i].nombre, 1, strlen(productos[i].nombre), f);
+        fgets(productos[i].nombre, 50, stdin);
+        fwrite(productos[i].nombre, 1, strlen(productos[i].nombre) - 1, f);
         fprintf(f, ",");
 
         printf("Cantidad del producto: ");
-        gets(productos[i].cantidad);
-        fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+        fgets(productos[i].cantidad, 100, stdin);
+        fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad) - 1, f);
         fprintf(f, ",");
 
         printf("Precio del producto: ");
-        gets(productos[i].precio);
-        fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+        fgets(productos[i].precio, 50, stdin);
+        fwrite(productos[i].precio, 1, strlen(productos[i].precio) - 1, f);
         fprintf(f, ",");
 
         printf("Codigo del producto: ");
-        gets(productos[i].codigo);
-        fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
+        fgets(productos[i].codigo, 10, stdin);
+        fwrite(productos[i].codigo, 1, strlen(productos[i].codigo) - 1, f);
         fprintf(f, ",");
         fprintf(f, "\n");
 
@@ -106,6 +106,8 @@ int cargarProductos(){
 
 void listarEmpleados(int nProductos){
 
+    char c;
+
     printf("---LISTAR PRODUCTOS---\n\n"); 
     printf("\n+----------------------------+------------+-------------+--------+\n");
     printf("|           Nombre           |  Cantidad  |    Precio   | Codigo |");
@@ -114,7 +116,9 @@ void listarEmpleados(int nProductos){
         printf("| %-26s | %-10s | %-11s | %-6s |", productos[i].nombre, productos[i].cantidad, productos[i].precio, productos[i].codigo);
     }
     printf("\n+----------------------------+------------+-------------+--------+\n");
-    system("pause");
+    fflush(stdin);
+    printf("Continuar... ");
+    c = getchar();
     system("clear");
 }
 
@@ -216,8 +220,8 @@ int modificarPrecio(int nProductos){
                 fprintf(f, ",");
 
                 printf("Precio del producto: ");
-                gets(productos[i].precio);
-                fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
+                fgets(productos[i].precio, 100, stdin);
+                fwrite(productos[i].precio, 1, strlen(productos[i].precio) - 1, f);
                 fprintf(f, ",");
 
                 fwrite(productos[i].codigo, 1, strlen(productos[i].codigo), f);
@@ -294,8 +298,8 @@ int modificarCantidad(int nProductos){
                 fprintf(f, ",");
 
                 printf("Cantidad del producto: ");
-                gets(productos[i].cantidad);
-                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad), f);
+                fgets(productos[i].cantidad, 100, stdin);
+                fwrite(productos[i].cantidad, 1, strlen(productos[i].cantidad) - 1, f);
                 fprintf(f, ",");
 
                 fwrite(productos[i].precio, 1, strlen(productos[i].precio), f);
