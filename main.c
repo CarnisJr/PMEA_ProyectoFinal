@@ -6,13 +6,11 @@
 int main(void){
 
     //variables
-    int selector, numProductos, aux;
+    int selector, numProductos;
     char controlador, c;
     int existencia;
 
     numProductos = cargarProductos();
-    //aux = verificarExistencia(numProductos);
-    //printf("%d\n", aux);
     do{
         desplegarMenu(&selector);
         system("clear");

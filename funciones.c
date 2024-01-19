@@ -211,7 +211,7 @@ int modificarPrecio(int nProductos){
                 fprintf(f, ",");
 
                 printf("Precio del producto: ");
-                fgets(productos[i].precio, 100, stdin);
+                fgets(productos[i].precio, 50, stdin);
                 fwrite(productos[i].precio, 1, strlen(productos[i].precio) - 1, f);
                 fprintf(f, ",");
 
